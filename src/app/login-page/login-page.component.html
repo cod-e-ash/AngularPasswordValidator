@@ -10,7 +10,7 @@
             <label class="form-label" for="password">Password</label>
             <input class="form-input" [(ngModel)]="password" name="loginPass" type="password" id="password" placeholder="Password">
           </div>
-          <app-password-validator [password]="password" [pvMinLength]="8" [pvDigit]=true [pvSpecialChar]="true"></app-password-validator>
+          <app-password-validator [password]="password" [pvMinLength]="8" [pvDigit]=true [pvSpecialChar]="true" (pvValid)="test($event)"></app-password-validator>
         </div>
         <div class='class-footer login-actions'>
           <button class="btn btn-error mr-2 ml-2">Clear</button>
