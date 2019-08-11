@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="card login-card">
+      <form name="loginForm">
+        <div class="card-body">
+          <div>
+            <label class="form-label" for="username">Username</label>
+            <input class="form-input" [(ngModel)]="username" name="loginUser" type="text" id="username" placeholder="Username">
+          </div>
+          <div>
+            <label class="form-label" for="password">Password</label>
+            <input class="form-input" [(ngModel)]="password" name="loginPass" type="password" id="password" placeholder="Password">
+          </div>
+          <app-password-validator [password]="password" [pvMinLength]="8" [pvDigit]=true [pvSpecialChar]="true"></app-password-validator>
+        </div>
+        <div class='class-footer login-actions'>
+          <button class="btn btn-error mr-2 ml-2">Clear</button>
+          <button class="btn btn-success">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
