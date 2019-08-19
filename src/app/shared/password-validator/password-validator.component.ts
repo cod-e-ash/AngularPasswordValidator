@@ -34,9 +34,10 @@ export class PasswordValidatorComponent implements OnInit, OnChanges
     checkDigitRE = new RegExp('.*[0-9].*');
     checkSpecialCharRE = new RegExp(/^(?=.*?[" !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"])/);
     commonPasswordList = [
-        'password', '12345678', 'sunshine', 'iloveyou', 'princess', 'football', 'admin123', 'whatever', 'zaq1zaq1', 'trustno1', 'jennifer', 'maverick',
-        'blahblah', 'mercedes', 'corvette', 'computer', 'starwars', '1qaz2wsx', '12341234', 'baseball', 'passw0rd', 'aa123456', '!@#$%^&*', 'pass1234',
-        'qwertyui', 'asdfghjk', '987654321', '87654321', '123456789', 'aa123456w', 'password1', 'qwerty123', 'liverpool', '!@#$%^&amp;*', '!"£$%^&*'
+        '!@#$%^&*','!@#$%^&amp;*','!£$%^&*','12341234','12345678','123456789','1qaz2wsx','87654321','987654321','aa123456',
+        'aa123456w','admin123','asdfghjk','baseball','computer','corvette','football','iloveyou','jennifer','liverpool',
+        'maverick','mercedes','pass1234','passw0rd','password1','password12','password123','princess','qwerty123','starwars','sunshine',
+        'trustno1','whatever','zaq1zaq1','blahblah','password','qwertyui'
     ]
 
     constructor() {}
@@ -71,7 +72,8 @@ export class PasswordValidatorComponent implements OnInit, OnChanges
             this.numOfChecks.push(...Array.from(Array(8).keys()));
             if(this.password.length < this.pvMinValue) return false;
             let passLength = this.password && this.password.length > 0 ? this.password.length / 2 + 1 : 0;
-            if(passLength > 8) passLength = 8;
+            if(passLength > 11) passLength = 8
+            else if(passLength >= 8) passLength = 6;
             if(passLength > 0) this.passedChecks.push(...Array.from(Array(Math.round(passLength)).keys()));
         }
         return true;
@@ -144,6 +146,7 @@ export class PasswordValidatorComponent implements OnInit, OnChanges
         this.numOfChecks = [...Array.from(new Set([...this.numOfChecks]))];
         this.passedChecks = [...Array.from(new Set([...this.passedChecks]))];
         if(this.numOfChecks.length > 0) this.strength = Math.round((this.passedChecks.length / this.numOfChecks.length) * 100);
+        if(!valid && this.strength > 50) this.strength = 50;
         if(this.strength > 100) this.strength = 100;
         this.pvValid.emit({ valid, strength: this.strength });
     }
