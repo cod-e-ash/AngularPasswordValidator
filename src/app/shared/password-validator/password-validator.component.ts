@@ -24,6 +24,7 @@ export class PasswordValidatorComponent implements OnInit, OnChanges
     @Input() pvRepeatMsg: string;
     @Input() pvMustMsg: string;
     @Input() pvShouldMsg: string;
+    @Input() pvSuggestionMsg: string;
 
     @Output() pvValid: EventEmitter < { valid: boolean, strength: number } > = new EventEmitter();
 

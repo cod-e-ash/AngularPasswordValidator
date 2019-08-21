@@ -10,13 +10,21 @@ export class LoginPageComponent implements OnInit {
   username: string;
   password: string;
 
+  pvValid = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  clearFields()
+  {
+    this.username = '';
+    this.password = '';
+  }
+
   test(a: any)
   {
-    // console.log(a);
+    console.log(a);
   }
 }
